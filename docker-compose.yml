@@ -1,0 +1,34 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php:7.3-fpm-alpine
+    container_name: laravel-app
+    networks:
+      - laravel-net
+  db:
+    image: mysql
+    container_name: db-laravel
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - SERVICE_NAME=mysql
+    networks:
+      - laravel-net
+  webserver:
+    image: nginx:alpine
+    depends_on:
+      - db
+    container_name: webserver
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+    networks:
+      - laravel-net
+
+networks:
+  laravel-net:
+    driver: bridge
