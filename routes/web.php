@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
 // Auth::routes();
-Route::get('/help', function(){
+Route::get('/help', function () {
     return view('help');
 })->name('help');
 
@@ -16,7 +16,7 @@ Route::namespace('Auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/getStaffPosition', 'HomeController@getStaffPosition');
@@ -31,8 +31,10 @@ Route::middleware('auth')->group(function(){
     Route::patch('/profile/{id}/update', 'ProfileController@updateProfile')->name('profile.update');
     Route::patch('/profile/upload', 'ProfileController@uploadPhoto')->name('profile.upload');
 
-    Route::middleware('role:admin|superadmin')->group(function(){
+    Route::middleware('role:admin|superadmin')->group(function () {
         Route::get('/users', 'UsersController@index')->name('users.index');
+        Route::get('/users/create', 'UsersController@create')->name('users.create');
+        Route::post('/users', 'UsersController@store')->name('users.store');
         Route::patch('/users/{id}/update', 'UsersController@update')->name('users.update');
         Route::get('/users/{id}', 'UsersController@destroy')->name('users.destroy');
 
@@ -44,10 +46,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/roles/{id}', 'RolesController@destroy')->name('roles.destroy');
     });
 
-    Route::middleware('role:admin|accounting|supervisor')->group(function(){
-        Route::namespace('Master')->prefix('master')->name('master.')->group(function(){
+    Route::middleware('role:admin|accounting|supervisor')->group(function () {
+        Route::namespace('Master')->prefix('master')->name('master.')->group(function () {
             Route::get('position', 'PositionController@index')->name('position.index');
-            Route::middleware('role:admin|accounting')->group(function(){
+            Route::middleware('role:admin|accounting')->group(function () {
                 Route::get('position/create', 'PositionController@create')->name('position.create');
                 Route::post('position', 'PositionController@store')->name('position.store');
                 Route::get('position/{position}/edit', 'PositionController@edit')->name('position.edit');
@@ -57,7 +59,7 @@ Route::middleware('auth')->group(function(){
 
             Route::get('departement', 'DepartementController@index')->name('departement.index');
             Route::get('staff', 'StaffController@index')->name('staff.index');
-            Route::middleware('role:admin|accounting')->group(function(){
+            Route::middleware('role:admin|accounting')->group(function () {
                 Route::get('departement/create', 'DepartementController@create')->name('departement.create');
                 Route::post('departement', 'DepartementController@store')->name('departement.store');
                 Route::get('departement/{departement}/edit', 'DepartementController@edit')->name('departement.edit');
@@ -76,7 +78,7 @@ Route::middleware('auth')->group(function(){
         Route::get('salary/detail/id={id}', 'SalaryController@show')->name('salary.show');
         Route::get('overtime', 'OvertimeController@index')->name('overtime.index');
 
-        Route::middleware('role:admin|accounting')->group(function(){
+        Route::middleware('role:admin|accounting')->group(function () {
             Route::get('salary/create', 'SalaryController@create')->name('salary.create');
             Route::post('salary/detail/create', 'SalaryController@store')->name('salary.store');
             Route::post('salary/detail/create/store', 'SalaryController@storeDetail')->name('salary.detail.store');
@@ -85,7 +87,7 @@ Route::middleware('auth')->group(function(){
             Route::patch('salary/{salary}/update', 'SalaryController@update')->name('salary.update');
             Route::get('staff/get_salary', 'SalaryController@getSalary');
             Route::get('salary/export/excel/id={id}/filter={filter}', 'SalaryController@excel')->name('salary.export.excel');
-        
+
             Route::get('overtime/create', 'OvertimeController@create')->name('overtime.create');
             Route::post('overtime', 'OvertimeController@store')->name('overtime.store');
             Route::get('overtime/{overtime}/edit', 'OvertimeController@edit')->name('overtime.edit');
@@ -103,7 +105,7 @@ Route::middleware('auth')->group(function(){
         Route::get('absensi/detail/periode={periode}', 'AbsensiController@show')->name('absensi.detail');
         Route::get('absensi/export/excel/periode={periode}/filter={filter}', 'AbsensiController@excel')->name('absensi.export.excel');
 
-        Route::middleware('role:admin|accounting')->group(function(){
+        Route::middleware('role:admin|accounting')->group(function () {
             Route::get('schedule/create', 'ScheduleController@create')->name('schedule.create');
             Route::post('schedule', 'ScheduleController@store')->name('schedule.store');
             Route::get('schedule/{schedule}/edit', 'ScheduleController@edit')->name('schedule.edit');
@@ -119,7 +121,7 @@ Route::middleware('auth')->group(function(){
     Route::post('cuti', 'CutiController@store')->name('cuti.store');
     Route::get('cuti/{cuti}/edit', 'CutiController@edit')->name('cuti.edit');
     Route::patch('cuti/{cuti}/update', 'CutiController@update')->name('cuti.update');
-    Route::middleware('role:admin')->group(function(){
+    Route::middleware('role:admin')->group(function () {
         Route::get('cuti/{id}', 'CutiController@destroy')->name('cuti.destroy');
         Route::patch('/cuti/{id}/validated', 'CutiController@validasi')->name('cuti.validated');
     });
