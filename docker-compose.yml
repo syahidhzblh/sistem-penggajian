@@ -1,26 +1,19 @@
 version: "3"
 services:
-  laravel-app:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel-app
+    container_name: app
     networks:
       - laravel-net
+    environment:
+      - SERVICE_NAME=app
     depends_on:
-      - db-laravel
-    # command:
-    #   [
-    #     "./wait-for-mysql.sh",
-    #     "db-laravel",
-    #     "php",
-    #     "artisan",
-    #     "migrate",
-    #     "--force",
-    #   ]
-  db-laravel:
+      - db
+  db:
     image: mysql:5.7
-    container_name: db-laravel
+    container_name: db
     environment:
       - MYSQL_DATABASE=sistem_penggajian
       - MYSQL_ROOT_PASSWORD=toor
@@ -33,12 +26,12 @@ services:
     networks:
       - laravel-net
   webserver:
-    image: nginx:alpine
-    container_name: webserver
-    volumes:
-      - ./config/nginx:/etc/nginx/conf.d
+    image: nginx:latest
     ports:
-      - 80:80
+      - 8080:80
+    volumes:
+      - .:/var/www/sistem-penggajian
+      - ./config/nginx/:/etc/nginx/conf.d/
     networks:
       - laravel-net
 

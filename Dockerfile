@@ -27,4 +27,10 @@ RUN composer install
 RUN chown -R www-data:www-data /var/www/sistem-penggajian \
     && chmod -R 755 /var/www/sistem-penggajian
 
-CMD [ "php-fpm" ]
+COPY wait-for-mysql.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/wait-for-mysql.sh
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

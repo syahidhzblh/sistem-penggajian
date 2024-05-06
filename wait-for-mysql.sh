@@ -3,7 +3,7 @@
 
 set -e
 
-host="$2"
+host="$1"
 shift
 cmd="$@"
 
@@ -11,6 +11,9 @@ until mysql -h "$host" -u penggajian_admin -pPenggajian123!!! -e 'SELECT 1' &> /
   >&2 echo "MySQL is unavailable - sleeping"
   sleep 1
 done
+
+>&2 echo "MySQL is up - executing migration"
+php artisan migrate
 
 >&2 echo "MySQL is up - executing command"
 exec $cmd
