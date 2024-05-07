@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="text-center">
-                                    <h3 class="card-title">{{ $title }}</h3>
+                                    <h3 class="card-title">Tambah User & Staff </h3>
                                 </div>
                                 <div class="back-top">
                                     <a href="{{ route('master.staff.index') }}" class="btn text-muted">

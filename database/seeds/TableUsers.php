@@ -25,7 +25,7 @@ class TableUsers extends Seeder
             'name' => 'Admin',
             'birth' => date('Y-m-d'),
             'startdate' => date('Y-m-d'),
-            'addres' => 'Makassar',
+            'addres' => 'Jakarta',
             'addres' => null,
         ]);
     }

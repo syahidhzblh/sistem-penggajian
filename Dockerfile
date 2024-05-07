@@ -16,13 +16,12 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install
 
-# RUN sed -i "s/DB_DATABASE=laravel/DB_DATABASE=sistem_penggajian/g" /var/www/sistem-penggajian/.env
-# RUN sed -i "s/DB_USERNAME=root/DB_USERNAME=penggajian_admin/g" /var/www/sistem-penggajian/.env
-# RUN sed -i "s/DB_PASSWORD=/DB_PASSWORD=Penggajian123!!!/g" /var/www/sistem-penggajian/.env
+RUN cp .env.example .env
+RUN sed -i "s/DB_HOST=127.0.0.1/DB_HOST=db/g" /var/www/sistem-penggajian/.env
+RUN sed -i "s/DB_DATABASE=laravel/DB_DATABASE=sistem_penggajian/g" /var/www/sistem-penggajian/.env
+RUN sed -i "s/DB_USERNAME=root/DB_USERNAME=penggajian_admin/g" /var/www/sistem-penggajian/.env
+RUN sed -i "s/DB_PASSWORD=/DB_PASSWORD=Penggajian123!!!/g" /var/www/sistem-penggajian/.env
 
-# RUN php artisan migrate \
-#     && php artisan db:seed \
-#     && php artisan key:generate
 
 RUN chown -R www-data:www-data /var/www/sistem-penggajian \
     && chmod -R 755 /var/www/sistem-penggajian
