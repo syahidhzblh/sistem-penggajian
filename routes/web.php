@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/users', 'UsersController@store')->name('users.store');
         Route::patch('/users/{id}/update', 'UsersController@update')->name('users.update');
         Route::get('/users/{id}', 'UsersController@destroy')->name('users.destroy');
+        Route::get('/users/create', 'UsersController@create')->name('users.create');
 
         Route::get('/roles', 'RolesController@index')->name('roles.index');
         Route::get('/roles/create', 'RolesController@create')->name('roles.create');

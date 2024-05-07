@@ -14,6 +14,8 @@ WORKDIR /var/www/sistem-penggajian/
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
+RUN composer update
+
 RUN composer install
 
 # RUN sed -i "s/DB_DATABASE=laravel/DB_DATABASE=sistem_penggajian/g" /var/www/sistem-penggajian/.env
@@ -26,6 +28,7 @@ RUN composer install
 
 RUN chown -R www-data:www-data /var/www/sistem-penggajian \
     && chmod -R 755 /var/www/sistem-penggajian
+
 
 COPY wait-for-mysql.sh /usr/local/bin/
 
