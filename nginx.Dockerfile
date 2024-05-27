@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-RUN apt-get update && apt install certbot python3-certbot-nginx
+RUN apt-get update && apt install -y certbot python3-certbot-nginx
 
 # WORKDIR /etc/nginx/conf.d
 
