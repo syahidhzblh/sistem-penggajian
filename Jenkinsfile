@@ -19,17 +19,17 @@ pipeline{
         stage('Run Additional Artisan Command'){
             steps{
                 sh '''
-                docker compose exec app php artisan migrate
-                docker compose exec app php aritsan db:seed
-                docker compose exec app php artisan key:generate
+                docker exec app php artisan migrate
+                docker exec app php aritsan db:seed
+                docker exec app php artisan key:generate
                 '''
             }
         }
         stage('SSL Configuration'){
             steps{
                 sh '''
-                docker compose exec webserver certbot -n register --agree-tos --email support@hisbul.my.id
-                docker compose exec webserver certbot -n --nginx -d penggajian.hisbul.my.id
+                docker exec webserver certbot -n register --agree-tos --email support@hisbul.my.id
+                docker exec webserver certbot -n --nginx -d penggajian.hisbul.my.id
                 '''
             }
         }
