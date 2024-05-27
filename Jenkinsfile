@@ -3,7 +3,13 @@ pipeline{
     stages{
         stage('Stop All Running Container'){
             steps{
-                sh 'docker rm -f $(docker ps -a -q)'
+                script{
+                    try{
+                        sh 'docker rm -f $(docker ps -a -q)'
+                    }catch (Exception e){
+                        echo 'No running Container'
+                    }
+                }
             }
         }
         stage('Build Image'){
