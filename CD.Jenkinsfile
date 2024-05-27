@@ -27,7 +27,7 @@ pipeline{
         }
         stage('Run Container App Laravel'){
             steps{
-                sh 'docker run -it -d --name=app --network= deploy-laravel-sistem-penggajian_laravel-net -e SERVICE_NAME=app laravel-app:latest'
+                sh 'docker run -it -d --name=app --network=deploy-laravel-sistem-penggajian_laravel-net -e SERVICE_NAME=app laravel-app:latest'
             }
         }
     }
