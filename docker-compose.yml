@@ -28,7 +28,7 @@ services:
   webserver:
     image: nginx:latest
     ports:
-      - 8080:80
+      - 8000:80
     volumes:
       - .:/var/www/sistem-penggajian
       - ./config/nginx/:/etc/nginx/conf.d/
