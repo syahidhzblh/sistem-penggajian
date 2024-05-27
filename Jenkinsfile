@@ -20,5 +20,14 @@ pipeline{
                 '''
             }
         }
+        stage('SSL Configuration'){
+            steps{
+                sh '''
+                docker exec webserver certbot -n register --agree-tos --email support@hisbul.my.id
+                docker exec webserver certbot -n --nginx -d penggajian.hisbul.my.id
+                '''
+            }
+        }
+
     }
 }

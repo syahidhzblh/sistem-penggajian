@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   app:
     build:
@@ -27,8 +27,10 @@ services:
       - laravel-net
   webserver:
     image: nginx:latest
+    container_name: webserver
     ports:
-      - 8000:80
+      - 80:80
+      - 443:443
     volumes:
       - .:/var/www/sistem-penggajian
       - ./config/nginx/:/etc/nginx/conf.d/
