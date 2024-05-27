@@ -10,7 +10,8 @@ services:
     environment:
       - SERVICE_NAME=app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     image: mysql:5.7
     container_name: db
@@ -21,11 +22,19 @@ services:
       - MYSQL_PASSWORD=Penggajian123!!!
       - SERVICE_NAME=mysql
     tty: true
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     ports:
       - 3306:3306
     networks:
       - laravel-net
   webserver:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
     image: nginx:latest
     container_name: webserver
     ports:
