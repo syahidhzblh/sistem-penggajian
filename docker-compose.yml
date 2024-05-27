@@ -45,6 +45,9 @@ services:
       - ./config/nginx/:/etc/nginx/conf.d/
     networks:
       - laravel-net
+    depends_on:
+      - db
+      - app
 
 networks:
   laravel-net:
