@@ -26,7 +26,7 @@ pipeline{
             steps{
                 sh '''
                 docker exec app php artisan migrate
-                docker exec app php aritsan db:seed
+                docker exec app php artisan db:seed
                 docker exec app php artisan key:generate
                 '''
             }
