@@ -130,7 +130,7 @@
         <label class="col-12 col-md-4 col-xs-4 col-form-label">Jabatan <span class="text-danger">*</span></label>
         <div class="col-12 col-md-5 col-lg-5">
             <select name="jabatan_id" class="form-control select2" required>
-                @foreach ($jabatan as $jabatan)
+                @foreach ($positin as $item)
                 {{-- @if ($loop->first && !isset($karyawan)) --}}
                 <option value="">Pilih :</option>
                 {{-- @endif --}}

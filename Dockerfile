@@ -1,8 +1,15 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm
 
-RUN apk add --no-cache zip libzip-dev libpng libpng-dev jpeg-dev
-
-RUN docker-php-ext-install mysqli pdo_mysql zip bcmath mbstring gd
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    libonig-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd mysqli pdo_mysql zip bcmath mbstring
 
 RUN mkdir -p /var/www/sistem-penggajian
 

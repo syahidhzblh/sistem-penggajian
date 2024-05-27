@@ -1,12 +1,12 @@
 pipeline{
     agent any
     stages{
-        stage('Build Docker Image'){
+        stage('Build Image'){
             steps{
-                sh 'docker compose build -d'
+                sh 'docker compose build'
             }
         }
-        stage('Up Container from compose'){
+        stage('Compose up image'){
             steps{
                 sh 'docker compose up -d'
             }

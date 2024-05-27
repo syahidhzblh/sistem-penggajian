@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UsersController;
+use GuzzleHttp\Psr7\Uri;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -89,6 +90,7 @@ Route::middleware('auth')->group(function () {
             Route::patch('salary/{salary}/update', 'SalaryController@update')->name('salary.update');
             Route::get('staff/get_salary', 'SalaryController@getSalary');
             Route::get('salary/export/excel/id={id}/filter={filter}', 'SalaryController@excel')->name('salary.export.excel');
+            Route::get('salary/{id}', 'SalaryController@destroy')->name('salary.destroy');
 
             Route::get('overtime/create', 'OvertimeController@create')->name('overtime.create');
             Route::post('overtime', 'OvertimeController@store')->name('overtime.store');

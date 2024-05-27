@@ -8,13 +8,12 @@ class TableDepartement extends Seeder
     public function run()
     {
         $departement = [
-            ['name'=>'House Keeping'],
-            ['name'=>'Front Office'],
-            ['name'=>'F&B Service'],
-            ['name'=>'F&B Production'],
+            ['name' => 'Operations'],
+            ['name' => 'Engineering'],
+            ['name' => 'Finance'],
+            ['name' => 'Marketing'],
         ];
-        foreach($departement as $row)
-        {
+        foreach ($departement as $row) {
             Departement::create($row);
         }
     }
