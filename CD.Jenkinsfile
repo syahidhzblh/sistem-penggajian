@@ -30,5 +30,10 @@ pipeline{
                 sh 'docker run -it -d --name=app --network=deploy-laravel-sistem-penggajian_laravel-net -e SERVICE_NAME=app laravel-app:latest'
             }
         }
+        stage('Re-generate ENV Key'){
+            steps{
+                sh 'docker exec app php artisan key:generate'
+            }
+        }
     }
 }

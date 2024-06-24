@@ -104,6 +104,8 @@ Route::middleware('auth')->group(function () {
         Route::post('absensi/detail/create', 'AbsensiController@store')->name('absensi.store');
         Route::get('absensi/delete/{id}', 'AbsensiController@destroy')->name('absensi.destroy');
 
+        Route::get('bonus', 'BonusController@index')->name('bonus.index');
+
         Route::get('absensi/detail/create', 'AbsensiController@createDetail')->name('absensi.detail.create');
         Route::post('absensi/detail/store', 'AbsensiController@storeDetail')->name('absensi.detail.store');
         Route::get('absensi/detail/periode={periode}', 'AbsensiController@show')->name('absensi.detail');

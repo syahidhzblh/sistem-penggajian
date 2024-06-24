@@ -89,6 +89,12 @@
                             <p>Absensi</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('bonus.index') }}" class="nav-link {{ $page == 'bonus' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-money-bill"></i>
+                            <p>Bonus</p>
+                        </a>
+                    </li>
 
                     <li class="nav-header">Special Menu</li>
 
