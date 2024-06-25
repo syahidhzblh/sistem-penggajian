@@ -2,12 +2,13 @@
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             @guest
-            {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'Laravel') }}
             @else
-            <span style="font-size: 14px">{{ Auth::user()->role->display_name ?? '' }}</span>
+                <span style="font-size: 14px">{{ Auth::user()->role->display_name ?? '' }}</span>
             @endguest
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -15,16 +16,22 @@
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link @if ($sub == 'beranda') {{ 'active' }} @endif" href="#"><i class="fa fa-home"></i> Beranda</a>
+                        <a class="nav-link @if ($sub == 'beranda') {{ 'active' }} @endif" href="#"><i
+                                class="fa fa-home"></i> Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if ($sub == 'faq') {{ 'active' }} @endif" href="#"><i class="fa fa-question-circle-o"></i> FAQ</a>
+                        <a class="nav-link @if ($sub == 'faq') {{ 'active' }} @endif" href="#"><i
+                                class="fa fa-question-circle-o"></i> FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if ($sub == 'about') {{ 'active' }} @endif" href="#"><i class="fa fa-info"></i> Tentang Kami</a>
+                        <a class="nav-link @if ($sub == 'about') {{ 'active' }} @endif" href="#"><i
+                                class="fa fa-info"></i> Tentang Kami</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle @if ($page == 'login' || $page == 'registrasi') {{ 'active' }} @endif" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown"
+                            class="nav-link dropdown-toggle @if ($page == 'login' || $page == 'registrasi') {{ 'active' }} @endif"
+                            href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            v-pre>
                             <i class="fa fa-lock"></i> Masuk / Daftar <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
