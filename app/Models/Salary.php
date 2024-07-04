@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Master\Departement;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Master\Staff;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +18,11 @@ class Salary extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class);
+    }
+
+    public function departement()
+    {
+        return $this->belongsTo(Departement::class);
     }
 
     public function absensi()

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset ('css/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
 @section('content')
@@ -16,18 +16,19 @@
                                     <span><i class="fa fa-search"></i> </span>
                                 </div>
                             </div>
-                            <input type="search" placeholder="Search" aria-label="Search..." class="form-control input-flat border-0" id="search"> 
-                        </div> 
-                        <a href="{{ route('absensi.create') }}" class="btn btn-default d-none d-md-inline-block ml-auto">
+                            <input type="search" placeholder="Search" aria-label="Search..."
+                                class="form-control input-flat border-0" id="search">
+                        </div>
+                        <a href="{{ route('absensi.create') }}" class="btn btn-primary d-none d-md-inline-block ml-auto">
                             <i class="fas fa-plus fa-sm fa-fw"></i> Mulai Absen
                         </a>
                     </div>
                 </form>
             </div>
         </div>
-    
+
         <div class="content pb-5">
-              <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -38,15 +39,16 @@
                             <table id="datatable" class="table table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width:100px;">Action</th> 
+                                        <th style="width:100px;">Action</th>
                                         <th>Periode</th>
                                     </tr>
-                                </thead> 
+                                </thead>
                                 <tbody>
                                     @foreach ($absensi as $item)
                                         <tr>
                                             <td class="text-left">
-                                                <a href="{{ route('absensi.detail', $item->periode) }}" class="btn btn-success btn-sm">
+                                                <a href="{{ route('absensi.detail', $item->periode) }}"
+                                                    class="btn btn-success btn-sm">
                                                     <i class="fas fa-eye fa-sm"></i> Lihat Absen
                                                 </a>
                                             </td>
@@ -62,10 +64,10 @@
         </div>
     </div>
 
-    <a href="{{ route('absensi.create') }}" class="btn btn-lg rounded-circle btn-primary btn-fly d-block d-md-none app-shadow">
+    <a href="{{ route('absensi.create') }}"
+        class="btn btn-lg rounded-circle btn-primary btn-fly d-block d-md-none app-shadow">
         <span><i class="fas fa-plus fa-sm align-middle"></i></span>
     </a>
-
 @endsection
 
 @section('scripts')
@@ -75,34 +77,33 @@
     <script src="{{ asset('js/sweetalert-dev.js') }}"></script>
     <script src="{{ asset('js/datatables.js') }}"></script>
     <script>
-        function hapus(id){
+        function hapus(id) {
             swal({
-            title: 'Yakin.. ?',
-            text: "Data anda akan dihapus. Tekan tombol yes untuk melanjutkan.",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes!',
-            closeOnConfirm: false,
-            closeOnCancel: false
-            },
-            function(isConfirm){
-                if (isConfirm) {
-                    $.ajax({
-                        url:"{{URL::to('/master/tenaga_kerja/destroy')}}",
-                        data:"id=" + id ,
-                        success: function(html)
-                        {
-                            swal("Deleted", "Data Berhasil Di Hapus.", "success");
-                            $("#hide"+id).hide(300);   
-                        }
-                    });
-                    
-                }else{
-                    swal("Canceled", "Anda Membatalkan! :)","error");
-                }
-            });
+                    title: 'Yakin.. ?',
+                    text: "Data anda akan dihapus. Tekan tombol yes untuk melanjutkan.",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!',
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "{{ URL::to('/master/tenaga_kerja/destroy') }}",
+                            data: "id=" + id,
+                            success: function(html) {
+                                swal("Deleted", "Data Berhasil Di Hapus.", "success");
+                                $("#hide" + id).hide(300);
+                            }
+                        });
+
+                    } else {
+                        swal("Canceled", "Anda Membatalkan! :)", "error");
+                    }
+                });
         }
     </script>
 @endsection

@@ -8,7 +8,7 @@ use App\Models\Absensi;
 use App\Models\Schedule;
 use App\Models\Master\Staff;
 use App\Models\Master\Position;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class SalaryController extends Controller
 {
@@ -116,6 +116,7 @@ class SalaryController extends Controller
     public function edit(Salary $salary)
     {
         $data['title'] = "Edit Salary";
+        $data['month'] = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", 'Agustus', 'September', 'Oktober', 'November', 'Desember');
         $data['staff'] = Staff::all();
         $data['salary'] = $salary;
         return view('salary.edit', $data);

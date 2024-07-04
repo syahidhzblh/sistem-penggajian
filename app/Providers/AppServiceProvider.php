@@ -18,13 +18,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
+
         $page = Request::segment(1);
         $sub = Request::segment(2);
-        $user = Auth::user();
+        $user = auth()->user();
         View::share([
-            'page'=>$page,
-            'sub'=>$sub,
+            'page' => $page,
+            'sub' => $sub,
             'user' => $user,
         ]);
     }

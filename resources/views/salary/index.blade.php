@@ -18,7 +18,7 @@
                                 class="form-control input-flat border-0" id="search">
                         </div>
                         <a href="{{ route('salary.create') }}"
-                            class="btn btn-default app-shadow d-none d-md-inline-block ml-auto">
+                            class="btn btn-primary app-shadow d-none d-md-inline-block ml-auto">
                             <i class="fas fa-dollar fa-fw"></i> Input Salary
                         </a>
                     </div>
@@ -41,6 +41,7 @@
                                     <tr>
                                         <th class="text-center" style="width: 100px;">#</th>
                                         <th>Staff</th>
+                                        <th>Department</th>
                                         <th>Position</th>
                                         <th>Status</th>
                                         <th>Salary</th>
@@ -67,6 +68,7 @@
                                                 </div>
                                             </td>
                                             <td>{{ $item->staff->name ?? '' }}</td>
+                                            <td>{{ $item->staff->departement->name }}</td>
                                             <td>{{ $item->staff->position->name ?? '' }}</td>
                                             <td>
                                                 <span
