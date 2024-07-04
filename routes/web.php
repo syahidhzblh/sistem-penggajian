@@ -130,6 +130,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('cuti/{id}', 'CutiController@destroy')->name('cuti.destroy');
         Route::patch('/cuti/{id}/validated', 'CutiController@validasi')->name('cuti.validated');
-        Route::get('cuti/export/excel/id={id}/filter={filter}', 'CutiController@excel')->name('cuti.export.excel');
+        Route::get('cuti/export/excel', 'CutiController@excel')->name('cuti.export.excel');
     });
 });

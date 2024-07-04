@@ -126,11 +126,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    {{-- <a href="{{ route('cuti.export.excel', $cuti->id, all) }}"
-                                        class="btn btn-success btn-sm" id="export-excel">
-                                        <i class="fa fa-file-excel-o fa-fw"></i> Export Excel
-                                    </a> --}}
-                                    <a href="#" class="btn btn-success btn-sm" id="export-excel">
+                                    <a href="{{ route('cuti.export.excel') }}" class="btn btn-success btn-sm"
+                                        id="export-excel">
                                         <i class="fa fa-file-excel-o fa-fw"></i> Export Excel
                                     </a>
                                 </div>

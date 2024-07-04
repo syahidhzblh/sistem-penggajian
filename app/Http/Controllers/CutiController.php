@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportCuti;
 use Illuminate\Http\Request;
 use App\Models\Cuti;
 use App\Models\Master\Staff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\ViewErrorBag;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CutiController extends Controller
 {
@@ -160,25 +163,10 @@ class CutiController extends Controller
         return redirect()->back()->with($message);
     }
 
-    public function excel($id, $filter)
+    public function excel()
     {
-        // filter berdasarkan departement
-        $f = $filter ?? 'all';
-        $data['title'] = "Detail Cuti";
-        $data['cuti'] = Cuti::find($id);
-        if ($f == '' || $f == 'all') {
-            $data['cuti'] = Cuti::where('id', $id)->get();
-        } else {
-            $data['cuti'] = Cuti::where('id', $id)
-                ->where('periode', $f)
-                ->get();
-        }
-        $data['periode'] = Cuti::groupBy('periode')
-            ->orderBy('periode')
-            ->select(DB::raw('count(*) as count, periode'))
-            ->get();
-        $data['filter'] = $f;
-        return view('cuti.excel', $data);
-        // $data['absensi'] = Absensi::where('periode', $id)->first();
+        $data = Cuti::orderBy('id', 'asc')->get();
+        return view('cuti.excel',  ['cuti' => $data]);
+        // return Excel::download(new ExportCuti($cuti), "cuti.xlsx");
     }
 }

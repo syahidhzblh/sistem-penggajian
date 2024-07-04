@@ -114,7 +114,7 @@
                     @endif
                     console.log(html);
                     $('input[name=total_kehadiran]').val(count);
-                    $('#salary_preview').html(to_rupiah(position.salary / 20));
+                    $('#salary_preview').html(to_rupiah(position.salary));
                     $('#total_kehadiran').html(count);
 
                     let total_salary = parseInt(count) * parseInt(position.salary);
